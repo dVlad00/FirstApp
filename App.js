@@ -1,10 +1,16 @@
 import React from "react";
-import {Text,View} from "react-native"
+import { Text, View } from "react-native"
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DefaultScreen from "./src/screens/DefaultScreen";
+import  MainStackNavigator from "./src/navigation/Navigator"
 
-const App =()=>{
-  return <View>
-    <Text>Hello</Text>
-  </View>
+const Stack = createNativeStackNavigator()
+
+const App = () => {
+  return <MainStackNavigator>
+
+  </MainStackNavigator>
 }
 
 export default App
