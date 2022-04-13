@@ -1,18 +1,38 @@
 import React from "react";
-import { View, StyleSheet,Text } from "react-native";
+import { View, StyleSheet, Text, TextInput, Dimensions } from "react-native";
 
-const Box = () => {
-    return <View style={styles.boxView}>
-        <View ><Text>hello</Text></View>
-    </View>
+const screenWIdth = Dimensions.get("window").width
+const screenHeight = Dimensions.get("window").height
+
+const Box = ({setUp,password}) => {
+    return <TextInput 
+    style={styles.textInput}
+    placeholder={setUp}
+    placeholderTextColor="#242322"
+    
+    ></TextInput>
 }
 
 const styles = StyleSheet.create({
-   boxView:{
-       flex:1,
-       borderColor:"black",
-       borderWidth:1
-   }
+    boxView: {
+        flex: 1,
+        borderWidth: 2,
+        borderColor: "blue",
+        justifyContent: "center",
+    },
+    textInput: {
+        alignSelf: "center",
+        borderLeftWidth: screenWIdth * 0.005,
+        borderRightWidth: screenWIdth * 0.005,
+        borderTopWidth: screenHeight * 0.002,
+        borderBottomWidth: screenHeight * 0.002,
+        width: screenWIdth * 0.9,
+        height: screenHeight * 0.07,
+        borderRadius: 5,
+        borderColor:"grey",
+        paddingHorizontal:15,
+        
+    }
 })
 
 export default Box

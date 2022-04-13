@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     textView:{
-        flex:1
+        flex:1,
+       paddingHorizontal:10
     },
     allScreenView: {
         flex: 1,
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
 
         justifyContent: "center",
         flex: 1,
+        alignItems:"center"
         
     }
 })
