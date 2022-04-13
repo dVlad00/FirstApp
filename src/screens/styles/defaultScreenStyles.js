@@ -2,64 +2,73 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     SignIn: {
-        width:"50%",
-        height:"50%",
+        width: "80%",
+        height: "50%",
         backgroundColor: "black",
-        alignSelf:"center",
-        borderTopLeftRadius:10,
-        borderBottomLeftRadius:10,
-        justifyContent:"center"
+        alignSelf: "flex-end",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+        justifyContent: "center",
     },
     SignUp: {
-        width:"50%",
-        height:"50%",
-        backgroundColor: "blue",
-        alignSelf:"center",
-        borderTopRightRadius:10,
-        borderBottomRightRadius:10,
-        justifyContent:"center"
+        width: "80%",
+        height: "50%",
+        backgroundColor: "#6969BF",
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        justifyContent: "center"
+    },
+    viewSignIn: {
+        flex: 1,
+        alignSelf: "center"
+    },
+    viewSignUp: {
+        flex: 1,
+        alignSelf: "center"
     },
     Text: {
         color: "white",
         alignSelf: "center",
     },
-    space:{
-        flex:2,
-        backgroundColor:'white'
-    },
-    imgView: {
-        backgroundColor: "red",
-        flex: 4
-    },
     carrouselView: {
-        backgroundColor: "white",
+        flex: 5,
+        backgroundColor:"white",
+        marginTop: 50
+    },
+    img: {
         flex: 3,
+        alignSelf: "center"
+    },
+    inisdeRenderView: {
+        flex: 1.2,
+        backgroundColor: "white",
+        marginBottom:20
     },
     buttonsView: {
+        flex: 1,
         flexDirection: "row",
-        flex: 2
+    },
+    textView:{
+        flex:1
     },
     allScreenView: {
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "column",
+        backgroundColor:"white"
+    }
+    , carrousel: {
+        flex:2,
+        borderTopWidth: "10"
     },
-    img: {
-        width: "100%",
-        height: "100%",
-        resizeMode: 'stretch'
+    carrouselText: {
+        alignSelf: "center",
+        textAlign: "center"
     },
-    viewSignIn: {
-        backgroundColor: "white",
+    renderView: {
+
+        justifyContent: "center",
         flex: 1,
-        justifyContent:"flex-end",
-        flexDirection:"row"
         
-        
-    },
-    viewRegister: {
-        backgroundColor: "white",
-        flex: 1,
-        flexDirection:"row"
     }
 })
 
