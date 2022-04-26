@@ -6,7 +6,7 @@ const screenHeight = Dimensions.get("window").height
 const styles = StyleSheet.create({
     textStyle: {
         marginHorizontal: 5,
-        flex: 1.5,
+        flex: 1.7,
         backgroundColor: "white",
         marginLeft:15,
         marginTop:10

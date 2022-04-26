@@ -7,48 +7,48 @@ const styles = StyleSheet.create({
     textView: {
         flex: 1.5,
         borderTopColor: "white",
-        margin:15
+        margin: 15
     },
     boxesView: {
         flex: 3,
         justifyContent: "space-evenly",
-        
+
     },
     orView: {
         flex: 0.5,
         flexDirection: "row",
         justifyContent: "center",
-        marginHorizontal: screenWIdth*0.09
+        marginHorizontal: screenWIdth * 0.09
     },
     socialView: {
         flex: 1,
-        flexDirection:"row",
-        justifyContent:"center",
-        justifyContent:"space-between",
-        alignItems:"center",
-        marginHorizontal:screenWIdth*0.35,
+        flexDirection: "row",
+        justifyContent: "center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginHorizontal: screenWIdth * 0.35,
 
     },
     buttonToRegisterView: {
         flex: 2,
-        alignItems:"center"
+        alignItems: "center"
     },
     ////
     headerText: {
-        fontSize: screenHeight*0.06,
+        fontSize: screenHeight * 0.06,
         fontWeight: "bold",
         color: "black",
         flex: 2,
-       fontFamily:"Raleway",
-       
+        fontFamily: "Raleway",
+
     },
     h2Text: {
-        fontSize:  screenHeight*0.035,
+        fontSize: screenHeight * 0.035,
         fontWeight: "bold",
         color: "black",
         flex: 1,
-        fontFamily:"Raleway",
-        
+        fontFamily: "Raleway",
+
     },
     forgotPassword: {
         alignSelf: "flex-end",
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         justifyContent: "center",
         borderRadius: 5,
-        marginTop:25
+        marginTop: 25
     },
     SignInText: {
         color: "white",
@@ -84,28 +84,19 @@ const styles = StyleSheet.create({
     orText2: {
         alignSelf: "center",
         fontWeight: "bold",
-        fontSize:18,
-        color:"black"
+        fontSize: 18,
+        color: "black"
     },
-    google:{
-        marginTop:3
-    },
-    facebook:{
+    lastText: {
+        flexDirection: "row",
+        marginHorizontal: screenWIdth * 0.1,
 
     },
-    apple:{
-        
-    },
-    lastText:{
-        flexDirection:"row",
-        marginHorizontal:screenWIdth*0.1,
-      
-    },
-    RegisterNow:{
-         
+    RegisterNow: {
+
         fontWeight: "bold",
-        fontSize:15,
-        color:"black"
+        fontSize: 15,
+        color: "black"
     }
 
 })

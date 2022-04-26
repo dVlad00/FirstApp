@@ -4,11 +4,12 @@ import { View, StyleSheet, Text, TextInput, Dimensions } from "react-native";
 const screenWIdth = Dimensions.get("window").width
 const screenHeight = Dimensions.get("window").height
 
-const Box = ({setUp,password}) => {
+const Box = ({setUp,password,setValue}) => {
     return <TextInput 
     style={styles.textInput}
     placeholder={setUp}
     placeholderTextColor="#242322"
+    onChangeText={(text)=>setValue(text)}
     
     ></TextInput>
 }

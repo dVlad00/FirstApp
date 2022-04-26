@@ -1,28 +1,56 @@
-import React from "react";
-import { View, Text, Dimensions, Image,TouchableOpacity } from "react-native"
+import React, { useState, useEffect } from "react";
+import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native"
 import Box from "../components/Box"
 import styles from "./styles/logInScreenStyles";
+import SocialMediaButton from "../components/SocialButton";
+import auth from "@react-native-firebase/auth"
+import { logIn, userDetails } from "../utiles/firebase"
+import images from "../themes/images";
+import strings from "../themes/strings";
+import { connect } from "react-redux";
 
-const LogInScreen = ({ navigation }) => {
+
+
+const LogInScreen = ({ navigation, uid, login, useremail, user }) => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+  
+
+    useEffect(() => {
+        console.log("Din REDUX ", user)
+        if (user != null){
+            navigation.navigate("Bottom")
+        }
+    }, [user])
+
+    const functions = async () => {
+        await login(email, password)
+
+    }
+
+    
 
     return <View style={{ flex: 1, backgroundColor: "white" }}>
-
         <View style={styles.textView}>
-            <Text style={styles.headerText}>Lets Sign you in</Text>
-            <Text style={styles.h2Text}>Welcome Back,</Text>
-            <Text style={styles.h2Text}>You have been missed</Text>
+            <Text style={styles.headerText}>{strings.logInScreen.title}</Text>
+            <Text style={styles.h2Text}>{strings.logInScreen.welcome}</Text>
+            <Text style={styles.h2Text}>{strings.logInScreen.missed}</Text>
         </View>
         <View style={styles.boxesView}>
-            <Box setUp={"Email,phone & username"}></Box>
-            <Box setUp={"Password"}
-                password={true}></Box>
+            <Box
+                setUp={"Email,phone & username"}
+                setValue={setEmail}></Box>
+            <Box
+                setUp={"Password"}
+                setValue={setPassword}></Box>
             <TouchableOpacity
                 style={styles.forgotPassword}>
-                <Text style={styles.forgotPasswordText}>Forgot Your Password?</Text>
+                <Text style={styles.forgotPasswordText}>{strings.logInScreen.forgotP}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.SignInButton}>
-                <Text style={styles.SignInText}>Sign In</Text>
+                style={styles.SignInButton}
+                onPress={() => functions()}>
+                <Text style={styles.SignInText}>{strings.defaultScreen.SignIn}</Text>
             </TouchableOpacity>
         </View>
         <View style={styles.orView}>
@@ -33,28 +61,34 @@ const LogInScreen = ({ navigation }) => {
             <View style={styles.orBar}></View>
         </View>
         <View style={styles.socialView}>
-            <Image
-                style={styles.google}
-                source={require("../img/Google.png")}>
-            </Image>
-            <Image
-                style={styles.facebook}
-                source={require("../img/Facebook.png")}>
-            </Image>
-            <Image
-                style={styles.apple}
-                source={require("../img/Apple.png")}>
-            </Image>
+            <SocialMediaButton
+                imgSource={images.google}></SocialMediaButton>
+            <SocialMediaButton
+                imgSource={images.facebook}></SocialMediaButton>
+            <SocialMediaButton
+                imgSource={images.apple}></SocialMediaButton>
         </View>
         <View style={styles.buttonToRegisterView}>
             <TouchableOpacity
                 style={styles.lastText}
                 onPress={() => navigation.navigate("SignUp")}>
-                <Text>Don`t have and Account?</Text>
-                <Text style={styles.RegisterNow}> Register Now!</Text>
+                <Text>{strings.logInScreen.dont}</Text>
+                <Text style={styles.RegisterNow}> {strings.logInScreen.register}</Text>
             </TouchableOpacity>
         </View>
     </View>
 }
 
-export default LogInScreen
+
+
+const mapStateToProps = (state) => {
+    const { uid, useremail, user } = state.loginReducer;
+
+    return { uid, useremail, user };
+}
+const mapDispatchToProps = (dispatch) => ({
+
+    login: (userEmail, userPassword) => dispatch({ type: "LOGIN", payload: { userEmail, userPassword } }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)
