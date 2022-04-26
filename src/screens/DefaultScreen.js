@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react"
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native"
 import styles from "./styles/defaultScreenStyles"
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import images from "../themes/images";
+import strings from "../themes/strings";
 
 
 
@@ -15,19 +17,19 @@ const DefaultScreen = ({ navigation }) => {
         {
             id: 1,
             title: "Hello Lorem ipsum dolor sit amet, consectetur adipiscing elit.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  ",
-            img: require("../img/photo.png")
+            img: images.people
         }, {
             id: 2,
             title: "Hello2",
-            img: require("../img/photo.png")
+            img: images.people
         }, {
             id: 3,
             title: "Hello3",
-            img: require("../img/photo.png")
+            img: images.people
         }, {
             id: 4,
             title: "Hello4",
-            img: require("../img/photo.png")
+            img: images.people
         }
     ]
     const renderItem = ({ item, index }) => {
@@ -80,12 +82,12 @@ const DefaultScreen = ({ navigation }) => {
                 ? <View style={styles.buttonsView}>
                     <View style={styles.viewSignIn}>
                         <TouchableOpacity style={styles.SignIn} onPress={() => navigation.navigate("LogIn")}>
-                            <Text style={styles.Text}> Sign In</Text>
+                            <Text style={styles.Text}> {strings.defaultScreen.SignIn}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.viewSignUp}>
                         <TouchableOpacity style={styles.SignUp} onPress={() => navigation.navigate("SignUp")}>
-                            <Text style={styles.Text}> Sign Up</Text>
+                            <Text style={styles.Text}> {strings.defaultScreen.SignUp}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
