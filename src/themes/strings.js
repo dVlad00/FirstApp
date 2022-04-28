@@ -23,7 +23,7 @@ const strings = {
         Invest:"Investment Guide"
     },
     profileScreen:{
-        profile:"profile",
+        profile:"Profile",
         name:"Janos Macroni",
         job:"Expert"
     },

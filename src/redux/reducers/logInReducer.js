@@ -1,12 +1,14 @@
 const INITIAL_STATE = {
     uid: null,
-    useremail:null,
-    user:null
-    
+    useremail: null,
+    user: null
+
 }
 
 const UID = "UID";
 const ERROR = "ERROR";
+
+const logO = "logO"
 
 export const reducer = (state = INITIAL_STATE, action) => {
 
@@ -15,8 +17,8 @@ export const reducer = (state = INITIAL_STATE, action) => {
             const nextState = {
                 ...state,
                 uid: action.payload.uid,
-                useremail:action.payload.email,
-                user:action.payload.details
+                useremail: action.payload.email,
+                user: action.payload.details
             };
             return nextState;
         case ERROR:
@@ -25,6 +27,14 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 error: action.payload,
             };
             return nextState1;
+        case logO:
+            const nextState2 = {
+                ...state,
+                user:action.payload,
+                uid:action.payload,
+                user:action.payload
+            };
+            return nextState2
         default:
             return state;
     }
