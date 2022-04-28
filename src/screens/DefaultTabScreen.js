@@ -33,14 +33,14 @@ const data = [
     }
 ]
 
-const DefaultTabScreen = ({user}) => {
+const DefaultTabScreen = ({ user }) => {
     return <View style={styles.mainView}>
         <View style={styles.NotificationsViewButtons}>
             <Icon name="bars" size={15} color="black" />
             <Icon name="bell" size={15} color="black" />
         </View>
         <View style={styles.welcomeView}>
-            <Text style={styles.welcomeText}> Welcome, {user.name}</Text>
+            <Text style={styles.welcomeText}> Welcome, {user === null ? "" : user.name}</Text>
         </View>
         <View style={styles.investNowView} >
             <LinearGradient
@@ -94,13 +94,10 @@ const DefaultTabScreen = ({user}) => {
 }
 
 const mapStateToProps = (state) => {
-    const {  user } = state.loginReducer;
+    const { user } = state.loginReducer;
 
     return { user };
 }
-const mapDispatchToProps = (dispatch) => ({
 
-    login: (userEmail, userPassword) => dispatch({ type: "LOGIN", payload: { userEmail, userPassword } }),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultTabScreen)
+export default connect(mapStateToProps)(DefaultTabScreen)
