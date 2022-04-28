@@ -1,13 +1,20 @@
-import React from "react";
-import { Text, View, Image, Dimensions } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { useEffect } from "react";
+import { Text, View, Image, Dimensions, TouchableOpacity } from "react-native";
 import styles from "./styles/profileScreenStyle";
 import ProfileButton from "../components/ProfileButton";
 import strings from "../themes/strings";
 import images from "../themes/images";
+import { connect } from "react-redux";
+import { logIn } from "../utiles/firebase";
+import LogOutButton from "../components/LogOutButton";
 
+const ProfileScreen = ({ logout, user, navigation }) => {
+    useEffect(() => {
+        if (user == null) {
+            navigation.navigate("LogIn")
+        }
+    }, [user])
 
-const ProfileScreen = () => {
     return <View style={styles.ScreenView}>
         <View style={styles.profileView}>
             <Image
@@ -36,11 +43,19 @@ const ProfileScreen = () => {
             <ProfileButton
                 imgPath={images.doc}
                 name={"Document Info"}></ProfileButton>
-            <ProfileButton
-                imgPath={images.setting}
-                name={"Settings"}></ProfileButton>
+            <LogOutButton
+                logOut={logout}
+            ></LogOutButton>
         </View>
     </View>
 }
+const mapStateToProps = (state) => {
+    const { uid, useremail, user } = state.loginReducer;
+    return { uid, useremail, user };
+}
 
-export default ProfileScreen
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => dispatch({ type: "LOGOUT", payload: null }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
