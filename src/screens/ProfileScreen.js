@@ -26,7 +26,7 @@ const ProfileScreen = ({ logout, user, navigation }) => {
                 <Image style={styles.img} source={images.profile}></Image>
             </View>
             <View style={styles.textViews}>
-                <Text style={styles.NameText}> {strings.profileScreen.name}</Text>
+                <Text style={styles.NameText}> {user === null ? "" : user.name}</Text>
                 <Text style={styles.JobName}> {strings.profileScreen.job}</Text>
             </View>
         </View>

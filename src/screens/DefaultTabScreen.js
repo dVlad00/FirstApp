@@ -7,6 +7,7 @@ import Card from "../components/Cards"
 import News from "../components/News"
 import images from "../themes/images"
 import strings from "../themes/strings"
+import { connect } from "react-redux";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -32,14 +33,14 @@ const data = [
     }
 ]
 
-const DefaultTabScreen = () => {
+const DefaultTabScreen = ({ user }) => {
     return <View style={styles.mainView}>
         <View style={styles.NotificationsViewButtons}>
             <Icon name="bars" size={15} color="black" />
             <Icon name="bell" size={15} color="black" />
         </View>
         <View style={styles.welcomeView}>
-            <Text style={styles.welcomeText}> {strings.defaultTabScreen.welcomeText}</Text>
+            <Text style={styles.welcomeText}> Welcome, {user === null ? "" : user.name}</Text>
         </View>
         <View style={styles.investNowView} >
             <LinearGradient
@@ -92,4 +93,11 @@ const DefaultTabScreen = () => {
     </View>
 }
 
-export default DefaultTabScreen
+const mapStateToProps = (state) => {
+    const { user } = state.loginReducer;
+
+    return { user };
+}
+
+
+export default connect(mapStateToProps)(DefaultTabScreen)
