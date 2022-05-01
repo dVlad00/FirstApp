@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, } from "react-native"
+import { Text, View, TouchableOpacity, Button } from "react-native"
 import styles from "./styles/signUpstyles";
 import Box from "../components/Box"
 import firestore from '@react-native-firebase/firestore'
@@ -7,6 +7,9 @@ import auth from "@react-native-firebase/auth"
 import { createAccount, registerUser } from "../utiles/firebase"
 import strings from "../themes/strings";
 import images from "../themes/images";
+import DatePicker from 'react-native-date-picker'
+import BirthDate from "../components/BirthDate";
+
 
 const usersCollection = firestore().collection('users')
 
@@ -17,13 +20,22 @@ const SignUpScreen = ({ navigation }) => {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [gender, setGender] = useState("")
+    const [birth, setBirth] = useState("")
+
+
 
     const registerFunction = () => {
-        createAccount(email, password, name, busines, phone, email, password)
+
+
+        createAccount(email, password, name, busines, phone, gender, birth)
     }
     useEffect(() => {
-        console.log(name)
+        console.log(name, gender, birth)
     }, [name, busines, phone, email, password])
+    useEffect(()=>{
+        console.log("din Use effect", birth)
+    },[birth])
 
 
     return <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -49,6 +61,16 @@ const SignUpScreen = ({ navigation }) => {
             <Box
                 setUp={"Password"}
                 setValue={setPassword}></Box>
+            <Box
+                setUp={"Gender"}
+                setValue={setGender}></Box>
+            <BirthDate
+            setValue={setBirth}></BirthDate>
+
+
+
+
+
         </View>
         <View style={styles.buttonView}>
             <TouchableOpacity style={styles.buttonStyle}

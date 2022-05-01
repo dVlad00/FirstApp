@@ -1,33 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native"
+import { View, Text, TouchableOpacity, Button, Modal } from "react-native"
 import EmojiPicker from "rn-emoji-keyboard"
 import styles from "./styles/emojiScreenStyle";
 
+
+
+
 const EmojiScreen = () => {
-    const [result, setResult] = useState()
-    const [isModalopen, setIsModalopen] = useState(false)
-
-    const handlePick = (emoji) => {
-        console.log(emoji)
-        setResult(emoji.emoji)
-        setIsModalopen((prev) => !prev)
-    }
-
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
     return (
         <View style={styles.bigView}>
-            <Text style={styles.emoji}>{result}</Text>
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={()=> setIsModalopen(true)}>
-                <Text style={styles.buttonText}>Pick Emoji</Text>
-            </TouchableOpacity>
-
-            <EmojiPicker
-            style={styles.emoji}
-            onEmojiSelected={handlePick}
-            open={isModalopen}
-            onClose={()=>{setIsModalopen(false)}}
-            ></EmojiPicker>
+            
+            <DatePicker mode="date" date={date} onDateChange={setDate} />
         </View>
     )
 
