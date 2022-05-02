@@ -3,16 +3,18 @@ import firestore from '@react-native-firebase/firestore'
 import auth from "@react-native-firebase/auth"
 import { firebase } from '@react-native-firebase/firestore'
 
-const createAccount = async (email, password, name, phone, busines) => {
-    await auth().createUserWithEmailAndPassword(email, password).then(() => { registerUser(name, phone, busines, email) })
+const createAccount = async (email, password, name,busines, phone,gender,birth) => {
+    await auth().createUserWithEmailAndPassword(email, password).then(() => { registerUser(name, busines, phone,email,gender,birth) })
 }
 
-const registerUser = async (name, busines, phone, email) => {
+const registerUser = async (name, busines, phone, email,gender,birth) => {
     await firestore().collection('users').add({
         name: name,
         businesName: busines,
         phone: phone,
-        email: email
+        email: email,
+        gender:gender,
+        birth:birth
 
     })
 }

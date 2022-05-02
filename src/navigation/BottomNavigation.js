@@ -5,6 +5,7 @@ import DefaultTabScreen from "../screens/DefaultTabScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import EmojiScreen from "../screens/EmojiScreen";
+import ContactInfo from "../screens/ContactInfo";
 
 const Tab = createBottomTabNavigator()
 
@@ -30,6 +31,14 @@ const BottomNavigator = () => {
                 )
             }}
         ></Tab.Screen>
+        <Tab.Screen
+            name="Contact Info"
+            component={ContactInfo}
+            options={{
+                tabBarIcon: ({ color, size }) => (
+                    <Icon name="user" size={size} color={color} />
+                )
+            }} />
         <Tab.Screen
             name="Emoji"
             component={EmojiScreen}

@@ -6,14 +6,14 @@ const screenHeight = Dimensions.get("window").height
 const styles = StyleSheet.create({
     textStyle: {
         marginHorizontal: 5,
-        flex: 1.7,
+        flex: 1.6,
         backgroundColor: "white",
         marginLeft:15,
-        marginTop:10
+        marginTop:5
     },
     boxesView: {
         backgroundColor: "white",
-        flex: 3,
+        flex: 4,
         justifyContent: "space-evenly"
     },
     buttonView: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     alternativeView: {
         backgroundColor: "white",
-        flex: 1.5,
+        flex: 1,
         alignItems: "center"
     },
     // Text //
