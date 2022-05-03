@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
+import InfcoChangeModal from "./InfoChangeModal";
 
-const InfoChange = ({ name, context }) => {
+const InfoChange = ({ name, context, modalTitle, setContext }) => {
+
+
     return <View style={styles.BigView}>
         <Text>{name}</Text>
         <View style={styles.changeView}>
             <Text style={styles.insideText}>{context}</Text>
-            <TouchableOpacity >
-                <Text style={styles.changeText}>Change</Text>
-            </TouchableOpacity>
+            {name === "Email" ? null :
+                <TouchableOpacity onPress={() => {
+                    modalTitle(name)
+                    setContext(context)
+                }} >
+                    <Text style={styles.changeText}>Change</Text>
+                </TouchableOpacity>}
+
+
         </View>
     </View>
 }

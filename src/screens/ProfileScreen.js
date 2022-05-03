@@ -8,12 +8,12 @@ import { connect } from "react-redux";
 import { logIn } from "../utiles/firebase";
 import LogOutButton from "../components/LogOutButton";
 
-const ProfileScreen = ({ logout, user, navigation }) => {
+const ProfileScreen = ({ logout, user,uid, navigation }) => {
     useEffect(() => {
-        if (user == null) {
+        if (uid == null) {
             navigation.navigate("LogIn")
         }
-    }, [user])
+    }, [uid])
 
     return <View style={styles.ScreenView}>
         <View style={styles.profileView}>

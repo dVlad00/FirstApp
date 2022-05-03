@@ -4,28 +4,28 @@ import Box from "../components/Box"
 import styles from "./styles/logInScreenStyles";
 import SocialMediaButton from "../components/SocialButton";
 import auth from "@react-native-firebase/auth"
-import { logIn, userDetails } from "../utiles/firebase"
+import { userDetails } from "../utiles/firebase"
 import images from "../themes/images";
 import strings from "../themes/strings";
 import { connect } from "react-redux";
 
 
 
-const LogInScreen = ({ navigation, uid, login, useremail, user }) => {
+const LogInScreen = ({ navigation, uid, login, useremail, user,getUser }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
   
 
     useEffect(() => {
         console.log("Din REDUX ", user)
-        if (user != null){
+        if (uid != null){
+            getUser(uid)
             navigation.navigate("Bottom")
         }
-    }, [user])
+    }, [uid])
 
     const functions = async () => {
         await login(email, password)
-
     }
 
     
@@ -89,6 +89,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 
     login: (userEmail, userPassword) => dispatch({ type: "LOGIN", payload: { userEmail, userPassword } }),
+    getUser: (uid) => dispatch({type:"GETUSER",payload:{uid}})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)
