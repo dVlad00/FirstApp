@@ -3,38 +3,40 @@ import firestore from '@react-native-firebase/firestore'
 import auth from "@react-native-firebase/auth"
 import { firebase } from '@react-native-firebase/firestore'
 
-const createAccount = async (email, password, name,busines, phone,gender,birth) => {
-    await auth().createUserWithEmailAndPassword(email, password).then(() => { registerUser(name, busines, phone,email,gender,birth) })
+const createAccount = async (email, password, name, busines, phone, gender, birth) => {
+    await auth().createUserWithEmailAndPassword(email, password).then((temp) => { registerUser(name, busines, phone, email, gender, birth, temp.user.uid) })
 }
-
-const registerUser = async (name, busines, phone, email,gender,birth) => {
-    await firestore().collection('users').add({
+const registerUser = async (name, busines, phone, email, gender, birth, docUID) => {
+    await firestore().collection('users').doc(docUID).set({
         name: name,
         businesName: busines,
         phone: phone,
         email: email,
-        gender:gender,
-        birth:birth
-
+        gender: gender,
+        birth: birth
     })
 }
 
-const userDetails = async (userMail) => {
-    let user
-    const users =  await firestore()
+const changeDetails = async (uid, whatToChange, changedValue) => {
+    await firestore()
         .collection('users')
-        .where("email", "==", userMail)
-        .get()
-        .then(response => {
-             response.forEach(res => {
-                user =res.data()
-            })
-            return user
+        .doc(uid)
+        .update({
+            [whatToChange]: changedValue,
         })
-    return users
 }
 
+const userDetails = async (uid) => {
+    const users = await firestore()
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then(response => {
+            return response.data()
+        })
 
+    return users
+}
 
 const logIn = async (email, password) => {
     let status
@@ -51,9 +53,7 @@ const logIn = async (email, password) => {
     return result
 }
 
-
-
-export { createAccount, registerUser, logIn, userDetails }
+export { createAccount, registerUser, logIn, userDetails, changeDetails }
 
 
 
