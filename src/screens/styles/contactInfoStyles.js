@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
     },
     // Img View //
     img:{
-        
+        width:150,
+        height:150,
+        borderRadius:75
     },
 })
 

@@ -21,7 +21,7 @@ const BirthDate = ({ setUp, password, setValue }) => {
         <Text style={styles.text}>Birth Date</Text>
         <TouchableOpacity
             style={styles.button}
-            onPress={(lol) => setOpen(true)}>
+            onPress={() => setOpen(true)}>
             <Text style={styles.data}>{selectData}</Text>
 
             

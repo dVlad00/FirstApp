@@ -11,14 +11,13 @@ import { connect } from "react-redux";
 
 
 
-const LogInScreen = ({ navigation, uid, login, useremail, user,getUser }) => {
+const LogInScreen = ({ navigation, uid, login, useremail, user, getUser }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-  
+
 
     useEffect(() => {
-        console.log("Din REDUX ", user)
-        if (uid != null){
+        if (uid != null) {
             getUser(uid)
             navigation.navigate("Bottom")
         }
@@ -28,7 +27,7 @@ const LogInScreen = ({ navigation, uid, login, useremail, user,getUser }) => {
         await login(email, password)
     }
 
-    
+
 
     return <View style={{ flex: 1, backgroundColor: "white" }}>
         <View style={styles.textView}>
@@ -89,7 +88,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 
     login: (userEmail, userPassword) => dispatch({ type: "LOGIN", payload: { userEmail, userPassword } }),
-    getUser: (uid) => dispatch({type:"GETUSER",payload:{uid}})
+    getUser: (uid) => dispatch({ type: "GETUSER", payload: { uid } })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen)

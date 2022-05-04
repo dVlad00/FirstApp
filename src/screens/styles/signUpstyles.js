@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
     buttonView: {
         backgroundColor: "white",
-        flex: 0.8,
+        flex: 0.7,
         justifyContent: "center",
     },
     alternativeView: {

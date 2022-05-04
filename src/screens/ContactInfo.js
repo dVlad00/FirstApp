@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image } from "react-native"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 import styles from "./styles/contactInfoStyles";
 import images from "../themes/images"
 import InfoChange from "../components/InfoChange";
 import { connect } from "react-redux";
 import InfcoChangeModal from "../components/InfoChangeModal";
 import { changeDetails } from "../utiles/firebase";
+import ImagePicker, { launchCamera, launchImageLibrary } from "react-native-image-picker"
 
 const ContactInfo = ({ user, uid, getUser }) => {
     const [isModalOn, setModalOn] = useState(false)
@@ -13,16 +14,25 @@ const ContactInfo = ({ user, uid, getUser }) => {
     const [newBirthDate, setNewBirthdate] = useState("")
     const [modalTitile, setModalTitle] = useState("")
     const [context, setContext] = useState("")
+    const [img, setImg] = useState("")
 
-
+    const pickImage = async () => {
+        const options = {
+            noData: true,
+            saveToPhotos: true
+        }
+        const result = await launchImageLibrary(options, result => setImg(result.assets[0].uri))
+    }
 
     return <View style={styles.BigDaddy}>
         <View style={styles.topView}>
-            <Image source={images.vector}></Image>
+            <Image source={images.vector} />
             <Text style={styles.text}>Contact Info</Text>
         </View>
         <View style={styles.imgView}>
-            <Image style={styles.img} source={images.profile}></Image>
+            <TouchableOpacity onPress={pickImage}>
+                {img === "" ? <Image style={styles.img} source={images.profile}></Image> : <Image style={styles.img} source={{ uri: img }}></Image>}
+            </TouchableOpacity>
         </View>
         <View style={styles.componentsView}>
             <InfoChange

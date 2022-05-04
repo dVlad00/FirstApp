@@ -2,19 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, Button } from "react-native"
 import styles from "./styles/signUpstyles";
 import Box from "../components/Box"
-import firestore from '@react-native-firebase/firestore'
-import auth from "@react-native-firebase/auth"
-import { createAccount, registerUser } from "../utiles/firebase"
+
 import strings from "../themes/strings";
-import images from "../themes/images";
-import DatePicker from 'react-native-date-picker'
 import BirthDate from "../components/BirthDate";
+import { connect } from "react-redux";
 
-
-const usersCollection = firestore().collection('users')
-
-
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation, registerUser, registerST }) => {
     const [name, setName] = useState("")
     const [busines, setBusines] = useState("")
     const [phone, setPhone] = useState("")
@@ -23,20 +16,16 @@ const SignUpScreen = ({ navigation }) => {
     const [gender, setGender] = useState("")
     const [birth, setBirth] = useState("")
 
-
-
-    const registerFunction = () => {
-
-
-        createAccount(email, password, name, busines, phone, gender, birth)
+useEffect(()=>{
+    if(registerST=== true){
+        navigation.navigate("LogIn")
     }
-    useEffect(() => {
-        console.log(name, gender, birth)
-    }, [name, busines, phone, email, password])
-    useEffect(()=>{
-        console.log("din Use effect", birth)
-    },[birth])
+},[registerST])
 
+    const registerFunction = async () => {
+        await registerUser(email, password, name, busines, phone, gender, birth)
+        
+    }
 
     return <View style={{ flex: 1, backgroundColor: "white" }}>
         <View style={styles.textStyle}>
@@ -65,12 +54,7 @@ const SignUpScreen = ({ navigation }) => {
                 setUp={"Gender"}
                 setValue={setGender}></Box>
             <BirthDate
-            setValue={setBirth}></BirthDate>
-
-
-
-
-
+                setValue={setBirth}></BirthDate>
         </View>
         <View style={styles.buttonView}>
             <TouchableOpacity style={styles.buttonStyle}
@@ -89,4 +73,15 @@ const SignUpScreen = ({ navigation }) => {
     </View>
 }
 
-export default SignUpScreen
+const mapStateToProps = (state) => {
+    const { registerST } = state.loginReducer;
+
+    return { registerST };
+}
+const mapDispatchToProps = (dispatch) => ({
+    registerUser: (email, password, name, busines, phone, gender, birth) => dispatch({ type: "ISLOGIN", payload: { email: email, password: password, name: name, busines: busines, phone: phone, gender: gender, birth: birth } }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen)
+
+

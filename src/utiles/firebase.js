@@ -4,17 +4,18 @@ import auth from "@react-native-firebase/auth"
 import { firebase } from '@react-native-firebase/firestore'
 
 const createAccount = async (email, password, name, busines, phone, gender, birth) => {
-    await auth().createUserWithEmailAndPassword(email, password).then((temp) => { registerUser(name, busines, phone, email, gender, birth, temp.user.uid) })
+    return await auth().createUserWithEmailAndPassword(email, password).then((temp) => { return registerUser(name, busines, phone, email, gender, birth, temp.user.uid) })
 }
 const registerUser = async (name, busines, phone, email, gender, birth, docUID) => {
-    await firestore().collection('users').doc(docUID).set({
+    return await firestore().collection('users').doc(docUID).set({
         name: name,
         businesName: busines,
         phone: phone,
         email: email,
         gender: gender,
         birth: birth
-    })
+    }).then(() => { return true })
+
 }
 
 const changeDetails = async (uid, whatToChange, changedValue) => {

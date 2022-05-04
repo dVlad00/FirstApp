@@ -1,5 +1,5 @@
 import { put, takeLatest, call } from "@redux-saga/core/effects";
-import { logIn, userDetails } from "../../utiles/firebase";
+import { logIn, userDetails, createAccount } from "../../utiles/firebase";
 
 const LOGIN = "LOGIN";
 const UID = "UID"
@@ -8,14 +8,40 @@ const LOGOUT = "LOGOUT"
 const logO = "logO"
 const GETUSER = "GETUSER"
 const USERDETAILS = "USERDETAILS"
+const ISLOGIN = "ISLOGIN"
+const SETTRUE = "SETTRUE"
 
 const signIn = (email, password) => {
     return logIn(email, password)
 }
 
+const register = (email, password, name, busines, phone, gender, birth) => {
+    return createAccount(email, password, name, busines, phone, gender, birth)
+}
 
 const userDet = (uid) => {
     return userDetails(uid)
+}
+
+function* registerUser(actions) {
+    try {
+        const regUser = yield call(
+            register,
+            actions.payload.email,
+            actions.payload.password,
+            actions.payload.name,
+            actions.payload.busines,
+            actions.payload.phone,
+            actions.payload.gender,
+            actions.payload.birth
+        )
+        if (regUser) {
+            yield put({ type: SETTRUE, payload: { registerST: regUser } })
+        }
+    } catch (error) {
+        console.log("error Actions", error)
+    }
+
 }
 
 function* getUser(actions) {
@@ -43,11 +69,6 @@ function* loginRequest(action) {
             action.payload.userEmail,
             action.payload.userPassword,
         );
-        // console.log("@@@@@!#!",auth)
-        // const details = yield call(
-        //     aboutUser,
-        //     action.payload.userEmail
-        // )
         if (auth != undefined || details != undefined) {
             yield put({ type: UID, payload: { uid: auth.user.uid, email: auth.user.email } });
         } else yield put({ type: ERROR, payload: "ERROR" });
@@ -58,6 +79,7 @@ export function* watchLogin() {
     yield takeLatest(LOGIN, loginRequest);
     yield takeLatest(LOGOUT, logoutRequest);
     yield takeLatest(GETUSER, getUser);
+    yield takeLatest(ISLOGIN, registerUser)
 
 
 }
