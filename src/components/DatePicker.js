@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import { Button } from 'react-native'
 import DatePicker from 'react-native-date-picker'
 
- const Date = () => {
+const Date = () => {
   const [date, setDate] = useState(new Date())
   const [open, setOpen] = useState(false)
 
   return (
-    <>
-      
       <DatePicker
         modal
         open={open}
@@ -21,7 +18,6 @@ import DatePicker from 'react-native-date-picker'
           setOpen(false)
         }}
       />
-    </>
   )
 }
 

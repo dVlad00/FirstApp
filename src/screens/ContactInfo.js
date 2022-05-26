@@ -5,13 +5,11 @@ import images from "../themes/images"
 import InfoChange from "../components/InfoChange";
 import { connect } from "react-redux";
 import InfcoChangeModal from "../components/InfoChangeModal";
-import { changeDetails } from "../utiles/firebase";
-import ImagePicker, { launchCamera, launchImageLibrary } from "react-native-image-picker"
+import { changeDetails } from "../utils/firebase";
+import { launchCamera } from "react-native-image-picker"
 
 const ContactInfo = ({ user, uid, getUser }) => {
-    const [isModalOn, setModalOn] = useState(false)
     const [newName, setNewName] = useState("")
-    const [newBirthDate, setNewBirthdate] = useState("")
     const [modalTitile, setModalTitle] = useState("")
     const [context, setContext] = useState("")
     const [img, setImg] = useState("")
@@ -21,7 +19,7 @@ const ContactInfo = ({ user, uid, getUser }) => {
             noData: true,
             saveToPhotos: true
         }
-        const result = await launchImageLibrary(options, result => setImg(result.assets[0].uri))
+        await launchCamera(options, result => setImg(result.assets[0].uri))
     }
 
     return <View style={styles.BigDaddy}>
@@ -39,26 +37,25 @@ const ContactInfo = ({ user, uid, getUser }) => {
                 name={"Name"}
                 context={user != null ? user.name : ""}
                 modalTitle={setModalTitle}
-                setContext={setContext}></InfoChange>
+                setContext={setContext} />
             <InfoChange
                 name={"Birthdate"}
                 context={user != null ? user.birth : ""}
                 modalTitle={setModalTitle}
-                setContext={setContext}></InfoChange>
+                setContext={setContext} />
             <InfoChange
                 name={"Gender"}
                 context={user != null ? user.gender : ""}
                 modalTitle={setModalTitle}
-                setContext={setContext}></InfoChange>
+                setContext={setContext} />
             <InfoChange
                 name={"Phone"}
                 context={user != null ? user.phone : ""}
                 modalTitle={setModalTitle}
-                setContext={setContext}></InfoChange>
+                setContext={setContext} />
             <InfoChange
                 name={"Email"}
-                context={user != null ? user.email : ""}>
-            </InfoChange>
+                context={user != null ? user.email : ""} />
             <InfcoChangeModal
                 isVisible={modalTitile === "" ? false : true}
                 button={setModalTitle}
@@ -67,8 +64,7 @@ const ContactInfo = ({ user, uid, getUser }) => {
                 newValue={setNewName}
                 uid={uid}
                 value={newName}
-                reduxGetUser={getUser}
-            ></InfcoChangeModal>
+                reduxGetUser={getUser} />
         </View>
     </View>
 }

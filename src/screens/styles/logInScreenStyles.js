@@ -1,7 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-
-const screenWIdth = Dimensions.get("window").width
-const screenHeight = Dimensions.get("window").height
+import { screenHeight, screenWidth } from "../../utils/constants";
 
 const styles = StyleSheet.create({
     textView: {
@@ -12,13 +10,12 @@ const styles = StyleSheet.create({
     boxesView: {
         flex: 3,
         justifyContent: "space-evenly",
-
     },
     orView: {
         flex: 0.5,
         flexDirection: "row",
         justifyContent: "center",
-        marginHorizontal: screenWIdth * 0.09
+        marginHorizontal: screenWidth * 0.09
     },
     socialView: {
         flex: 1,
@@ -26,14 +23,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         justifyContent: "space-between",
         alignItems: "center",
-        marginHorizontal: screenWIdth * 0.35,
+        marginHorizontal: screenWidth * 0.35,
 
     },
     buttonToRegisterView: {
         flex: 2,
         alignItems: "center"
     },
-    ////
     headerText: {
         fontSize: screenHeight * 0.06,
         fontWeight: "bold",
@@ -48,7 +44,6 @@ const styles = StyleSheet.create({
         color: "black",
         flex: 1,
         fontFamily: "Raleway",
-
     },
     forgotPassword: {
         alignSelf: "flex-end",
@@ -59,7 +54,7 @@ const styles = StyleSheet.create({
     },
     SignInButton: {
         backgroundColor: "black",
-        width: screenWIdth * 0.9,
+        width: screenWidth * 0.9,
         height: screenHeight * 0.07,
         alignSelf: "center",
         justifyContent: "center",
@@ -89,8 +84,7 @@ const styles = StyleSheet.create({
     },
     lastText: {
         flexDirection: "row",
-        marginHorizontal: screenWIdth * 0.1,
-
+        marginHorizontal: screenWidth * 0.1,
     },
     RegisterNow: {
 
@@ -98,7 +92,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "black"
     }
-
 })
 
 export default styles

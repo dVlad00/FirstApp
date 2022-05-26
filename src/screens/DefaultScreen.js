@@ -1,38 +1,43 @@
 import React, { useState, useRef } from "react"
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native"
-import styles from "./styles/defaultScreenStyles"
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import images from "../themes/images";
 import strings from "../themes/strings";
+import styles from "./styles/defaultScreenStyles"
 
-
-
+const img = [
+    {
+        id: 1,
+        title: "Hello Lorem ipsum dolor sit amet, consectetur adipiscing elit.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  ",
+        img: images.people
+    }, {
+        id: 2,
+        title: "Hello2",
+        img: images.people
+    }, {
+        id: 3,
+        title: "Hello3",
+        img: images.people
+    }, {
+        id: 4,
+        title: "Hello4",
+        img: images.people
+    }
+]
 
 const DefaultScreen = ({ navigation }) => {
     const [index, setIndex] = useState(0)
-    const windowWidth = Dimensions.get('window').width;
+    const WindowWidth = Dimensions.get('window').width;
     const ref = useRef(null)
 
-    const img = [
-        {
-            id: 1,
-            title: "Hello Lorem ipsum dolor sit amet, consectetur adipiscing elit.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  ",
-            img: images.people
-        }, {
-            id: 2,
-            title: "Hello2",
-            img: images.people
-        }, {
-            id: 3,
-            title: "Hello3",
-            img: images.people
-        }, {
-            id: 4,
-            title: "Hello4",
-            img: images.people
-        }
-    ]
-    const renderItem = ({ item, index }) => {
+    const toLogIn = () => {
+        navigation.navigate("LogIn")
+    }
+    const toSignUp = () => {
+        navigation.navigate("SignUp")
+    }
+
+    const renderItem = ({ item }) => {
         return <View style={styles.renderView}>
             <Image style={styles.img} resizeMode="contain" source={item.img} />
             <Text style={styles.textView}>{item.title}</Text>
@@ -41,7 +46,6 @@ const DefaultScreen = ({ navigation }) => {
     }
 
     return <View style={styles.allScreenView}>
-        {/* <View style={styles.space}></View> */}
         <View style={styles.carrouselView}>
             <Carousel
                 contentContainerStyle={styles.carrousell}
@@ -49,30 +53,18 @@ const DefaultScreen = ({ navigation }) => {
                 ref={ref}
                 data={img}
                 renderItem={renderItem}
-                sliderWidth={windowWidth}
-                itemWidth={windowWidth}
+                sliderWidth={WindowWidth}
+                itemWidth={WindowWidth}
                 onSnapToItem={index => setIndex(index)}
-            ></Carousel>
+            />
             <Pagination
                 dotsLength={img.length}
                 activeDotIndex={index}
                 carouselRef={ref}
-                dotStyle={{
-                    width: 14,
-                    height: 14,
-                    borderRadius: 10,
-                    marginHorizontal: 2,
-                    backgroundColor: 'blue',
-                }}
-                containerStyle={{
-                    justifyContent: "space-evenly",
-                    marginHorizontal: 0.3 * windowWidth
-                }}
+                dotStyle={styles.dotStyle}
+                containerStyle={styles.dotContainer}
                 tappableDots={true}
-                inactiveDotStyle={{
-                    backgroundColor: 'black',
-                    marginHorizontal: 2
-                }}
+                inactiveDotStyle={styles.inactiveDot}
                 inactiveDotOpacity={0.4}
                 inactiveDotScale={0.6}
             />
@@ -81,12 +73,12 @@ const DefaultScreen = ({ navigation }) => {
             {index === 3
                 ? <View style={styles.buttonsView}>
                     <View style={styles.viewSignIn}>
-                        <TouchableOpacity style={styles.SignIn} onPress={() => navigation.navigate("LogIn")}>
+                        <TouchableOpacity style={styles.SignIn} onPress={toLogIn}>
                             <Text style={styles.Text}> {strings.defaultScreen.SignIn}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.viewSignUp}>
-                        <TouchableOpacity style={styles.SignUp} onPress={() => navigation.navigate("SignUp")}>
+                        <TouchableOpacity style={styles.SignUp} onPress={toSignUp}>
                             <Text style={styles.Text}> {strings.defaultScreen.SignUp}</Text>
                         </TouchableOpacity>
                     </View>
@@ -96,7 +88,6 @@ const DefaultScreen = ({ navigation }) => {
 
     </View>
 }
-
 
 
 export default DefaultScreen

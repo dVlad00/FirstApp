@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, } from "react-native"
+import { screenWidth } from "../../utils/constants"
+
 
 const styles = StyleSheet.create({
     SignIn: {
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     },
     carrouselView: {
         flex: 5,
-        backgroundColor:"white",
+        backgroundColor: "white",
         marginTop: 50
     },
     img: {
@@ -42,23 +44,23 @@ const styles = StyleSheet.create({
     inisdeRenderView: {
         flex: 1.2,
         backgroundColor: "white",
-        marginBottom:20
+        marginBottom: 20
     },
     buttonsView: {
         flex: 1,
         flexDirection: "row",
     },
-    textView:{
-        flex:1,
-       paddingHorizontal:10
+    textView: {
+        flex: 1,
+        paddingHorizontal: 10
     },
     allScreenView: {
         flex: 1,
         flexDirection: "column",
-        backgroundColor:"white"
+        backgroundColor: "white"
     }
     , carrousel: {
-        flex:2,
+        flex: 2,
         borderTopWidth: "10"
     },
     carrouselText: {
@@ -69,8 +71,23 @@ const styles = StyleSheet.create({
 
         justifyContent: "center",
         flex: 1,
-        alignItems:"center"
-        
+        alignItems: "center"
+
+    },
+    dotStyle: {
+        width: 14,
+        height: 14,
+        borderRadius: 10,
+        marginHorizontal: 2,
+        backgroundColor: 'blue',
+    },
+    inactiveDot: {
+        backgroundColor: 'black',
+        marginHorizontal: 2
+    },
+    dotContainer: {
+        justifyContent: "space-evenly",
+        marginHorizontal: 0.3 * screenWidth
     }
 })
 

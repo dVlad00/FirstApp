@@ -1,17 +1,12 @@
-import { StyleSheet, Dimensions } from "react-native";
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-const spaceLeft = 20
+import { StyleSheet } from "react-native";
+import { spaceLeft, screenWidth } from "../../utils/constants";
 
 const styles = StyleSheet.create({
-    //Big Daddy
     mainView: {
         flex: 1,
         paddingLeft: spaceLeft,
         backgroundColor: "white"
     },
-    // Main View`s //
     NotificationsViewButtons: {
         flex: 0.2,
         backgroundColor: "white",
@@ -19,7 +14,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "flex-end",
         paddingRight: spaceLeft,
-        marginTop:12
+        marginTop: 12
     },
     welcomeView: {
         flex: 0.5,
@@ -28,7 +23,6 @@ const styles = StyleSheet.create({
     },
     investNowView: {
         flex: 1,
-
         backgroundColor: "white"
     },
     BestPlanView: {
@@ -49,16 +43,12 @@ const styles = StyleSheet.create({
     NewsView: {
         flex: 1,
         backgroundColor: "white",
-       
     },
-
-    // Welcome Text//
     welcomeText: {
         fontSize: 30,
         fontWeight: "bold",
         color: "black"
     },
-    // Invest Now // 
     investNow: {
         flex: 1,
         backgroundColor: "transparent",
@@ -84,7 +74,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 10,
         justifyContent: "center",
-        width: windowWidth * 0.3
+        width: screenWidth * 0.3
     },
     investAndMoney: {
         flexDirection: "row",
@@ -94,7 +84,6 @@ const styles = StyleSheet.create({
         color: "black",
         alignSelf: "center"
     },
-    // Plans Text //
     Text1: {
         fontSize: 20,
         color: "black",
@@ -103,8 +92,6 @@ const styles = StyleSheet.create({
     Text2: {
         color: "red"
     }
-    // Investment Title // 
-    
 })
 
 export default styles

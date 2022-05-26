@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, TouchableOpacity, Dimensions, FlatList } from "react-native"
+import { Text, View, TouchableOpacity, FlatList } from "react-native"
 import styles from "./styles/defaultTabScreen"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import LinearGradient from "react-native-linear-gradient"
@@ -8,9 +8,6 @@ import News from "../components/News"
 import images from "../themes/images"
 import strings from "../themes/strings"
 import { connect } from "react-redux";
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const data = [
     {
@@ -71,7 +68,7 @@ const DefaultTabScreen = ({ user }) => {
                         path={item.path}
                         firstText={item.firstText}
                         secondText={item.secondText}
-                    ></Card>}
+                    />}
                 keyExtractor={(item) => item.id}></FlatList>
 
         </View>
@@ -83,12 +80,12 @@ const DefaultTabScreen = ({ user }) => {
                 NewsTitle={"Basic type pf investments"}
                 NewsContent={"This is how you set your foot for 2020. Stock market recession.What`s next..."}
                 imgPath={images.elipse1}
-            ></News>
+            />
             <News
                 NewsTitle={"Basic type pf investments"}
                 NewsContent={"This is how you set your foot for 2020. Stock market recession.What`s next..."}
                 imgPath={images.elipse}
-            ></News>
+            />
         </View>
     </View>
 }
