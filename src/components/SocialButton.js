@@ -1,11 +1,10 @@
 import React from "react";
-import { Image,TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 
 
-const SocialMediaButton =({imgSource})=>{
+const SocialMediaButton = ({ imgSource }) => {
     return <TouchableOpacity>
-        <Image
-        source={imgSource}></Image>
+        <Image source={imgSource} />
     </TouchableOpacity>
 }
 

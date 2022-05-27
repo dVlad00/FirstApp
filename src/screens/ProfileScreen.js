@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
-import { Text, View, Image, Dimensions, TouchableOpacity } from "react-native";
+import { Text, View, Image, } from "react-native";
 import styles from "./styles/profileScreenStyle";
 import ProfileButton from "../components/ProfileButton";
 import strings from "../themes/strings";
 import images from "../themes/images";
 import { connect } from "react-redux";
-import { logIn } from "../utiles/firebase";
 import LogOutButton from "../components/LogOutButton";
 
-const ProfileScreen = ({ logout, user,uid, navigation }) => {
+const ProfileScreen = ({ logout, user, uid, navigation }) => {
     useEffect(() => {
         if (uid == null) {
             navigation.navigate("LogIn")
@@ -33,16 +32,16 @@ const ProfileScreen = ({ logout, user,uid, navigation }) => {
         <View style={styles.buttonsView}>
             <ProfileButton
                 imgPath={images.contact}
-                name={"Contact Info"}></ProfileButton>
+                name={"Contact Info"} />
             <ProfileButton
                 imgPath={images.funding}
-                name={"Source of Funding Info"}></ProfileButton>
+                name={"Source of Funding Info"} />
             <ProfileButton
                 imgPath={images.bank}
-                name={"Bank Account Info"}></ProfileButton>
+                name={"Bank Account Info"} />
             <ProfileButton
                 imgPath={images.doc}
-                name={"Document Info"}></ProfileButton>
+                name={"Document Info"} />
             <LogOutButton
                 logOut={logout}
             ></LogOutButton>

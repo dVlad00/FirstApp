@@ -1,15 +1,6 @@
 import { put, takeLatest, call } from "@redux-saga/core/effects";
-import { logIn, userDetails, createAccount } from "../../utiles/firebase";
-
-const LOGIN = "LOGIN";
-const UID = "UID"
-const ERROR = "ERROR"
-const LOGOUT = "LOGOUT"
-const logO = "logO"
-const GETUSER = "GETUSER"
-const USERDETAILS = "USERDETAILS"
-const ISLOGIN = "ISLOGIN"
-const SETTRUE = "SETTRUE"
+import { logIn, userDetails, createAccount } from "../../utils/firebase";
+import {LOGIN,UID,ERROR,LOGOUT,LOGOUTFROMPROFILE,GETUSER,USERDETAILS,ISLOGIN,SETTRUE}from "../reduxTypes"
 
 const signIn = (email, password) => {
     return logIn(email, password)
@@ -58,7 +49,7 @@ function* getUser(actions) {
 
 function* logoutRequest(actions) {
     try {
-        yield put({ type: logO, payload: null });
+        yield put({ type: LOGOUTFROMPROFILE, payload: null });
     } catch (error) { console.log("eroare Actions", error) }
 }
 
