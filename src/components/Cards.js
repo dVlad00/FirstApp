@@ -7,7 +7,6 @@ const Card = ({ path, firstText, secondText }) => {
     return <View style={styles.bigView} >
         <TouchableOpacity style={styles.button} >
             <ImageBackground
-                resizeMod={"stetch"}
                 style={styles.img} source={path}>
                 <View style={styles.textView}>
                     <Text style={styles.text1}>{firstText}</Text>

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import styles from "./styles/contactInfoStyles";
 import images from "../themes/images"
 import InfoChange from "../components/InfoChange";
 import { connect } from "react-redux";
 import InfcoChangeModal from "../components/InfoChangeModal";
-import { changeDetails } from "../utils/firebase";
 import { launchCamera } from "react-native-image-picker"
 
 const ContactInfo = ({ user, uid, getUser }) => {
@@ -22,6 +21,45 @@ const ContactInfo = ({ user, uid, getUser }) => {
         await launchCamera(options, result => setImg(result.assets[0].uri))
     }
 
+    const InfoDetails = [
+        {
+            key: 4,
+            name: "Email",
+            context: user != null ? user.email : "",
+
+        },
+        {
+            key: 0,
+            name: "Name",
+            context: user != null ? user.name : "",
+            modalTile: setModalTitle,
+            setContext: setContext
+        },
+        {
+            key: 1,
+            name: "Birthdate",
+            context: user != null ? user.birth : "",
+            modalTile: setModalTitle,
+            setContext: setContext
+
+        },
+        {
+            key: 2,
+            name: "Gender",
+            context: user != null ? user.gender : "",
+            modalTile: setModalTitle,
+            setContext: setContext
+        },
+        {
+            key: 3,
+            name: "Phone",
+            context: user != null ? user.phone : "",
+            modalTile: setModalTitle,
+            setContext: setContext
+        },
+
+    ]
+
     return <View style={styles.BigDaddy}>
         <View style={styles.topView}>
             <Image source={images.vector} />
@@ -33,29 +71,15 @@ const ContactInfo = ({ user, uid, getUser }) => {
             </TouchableOpacity>
         </View>
         <View style={styles.componentsView}>
-            <InfoChange
-                name={"Name"}
-                context={user != null ? user.name : ""}
-                modalTitle={setModalTitle}
-                setContext={setContext} />
-            <InfoChange
-                name={"Birthdate"}
-                context={user != null ? user.birth : ""}
-                modalTitle={setModalTitle}
-                setContext={setContext} />
-            <InfoChange
-                name={"Gender"}
-                context={user != null ? user.gender : ""}
-                modalTitle={setModalTitle}
-                setContext={setContext} />
-            <InfoChange
-                name={"Phone"}
-                context={user != null ? user.phone : ""}
-                modalTitle={setModalTitle}
-                setContext={setContext} />
-            <InfoChange
-                name={"Email"}
-                context={user != null ? user.email : ""} />
+            {InfoDetails.map(
+                component => {
+                    return <InfoChange
+
+                        name={component.name}
+                        context={component.context}
+                        modalTitle={component.modalTile}
+                        setContext={component.setContext} />
+                })}
             <InfcoChangeModal
                 isVisible={modalTitile === "" ? false : true}
                 button={setModalTitle}
