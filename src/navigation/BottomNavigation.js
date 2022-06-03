@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import DefaultTabScreen from "../screens/DefaultTabScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import Icon from 'react-native-vector-icons/FontAwesome'

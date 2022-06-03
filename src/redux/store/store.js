@@ -2,8 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { spawn } from "redux-saga/effects";
 import createSagaMiddleware from "redux-saga";
 import { persistReducer, persistStore } from "redux-persist";
-import { applyMiddleware, combineReducers } from "redux";
-import { legacy_createStore as createStore} from 'redux'
+import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 import { reducer } from "../reducers/logInReducer";
 import { watchLogin } from "../actions/logInActions";
 
@@ -14,7 +13,7 @@ function* rootSaga() {
 }
 
 const rootReducer = combineReducers({
-  loginReducer: reducer ,
+  loginReducer: reducer,
 });
 
 const persistConfig = {

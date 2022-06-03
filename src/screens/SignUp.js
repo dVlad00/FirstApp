@@ -10,32 +10,32 @@ const SignUpScreen = ({ navigation, registerUser, registerST }) => {
     const [userDetails, setUserDetails] = useState({ name: null, busines: null, phone: null, email: null, password: null, gender: null, birth: null })
 
     const BoxArry = [{
-        id: 0,
+        key: 0,
         setUp: "Name",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, name: value }))
     },
     {
-        id: 1,
+        key: 1,
         setUp: "Busines Name",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, busines: value }))
     },
     {
-        id: 2,
+        key: 2,
         setUp: "Phone",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, phone: value }))
     },
     {
-        id: 3,
+        key: 3,
         setUp: "Email",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, email: value }))
     },
     {
-        id: 4,
+        key: 4,
         setUp: "Password",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, password: value }))
     },
     {
-        id: 5,
+        key: 5,
         setUp: "Gender",
         setValue: (value) => setUserDetails((prevState) => ({ ...prevState, gender: value }))
     },
@@ -68,7 +68,7 @@ const SignUpScreen = ({ navigation, registerUser, registerST }) => {
         </View>
         <View style={styles.boxesView}>
 
-            {BoxArry.map(box => <Box index={box.id} setUp={box.setUp} setValue={box.setValue} />)}
+            {BoxArry.map(box => <Box key={box.key} setUp={box.setUp} setValue={box.setValue} />)}
             <BirthDate
                 setValue={(value) => setUserDetails((prevState) => ({ ...prevState, birth: value }))} />
         </View>

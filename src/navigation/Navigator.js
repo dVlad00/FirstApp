@@ -5,7 +5,7 @@ import DefaultScreen from "../screens/DefaultScreen"
 import LogInScreen from "../screens/LogInScreen"
 import SignUpScreen from "../screens/SignUp";
 import BottomNavigator from "./BottomNavigation";
-import EmojiScreen from "../screens/EmojiScreen";
+
 
 
 const Stack = createNativeStackNavigator()

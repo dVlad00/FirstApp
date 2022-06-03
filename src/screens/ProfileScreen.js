@@ -7,12 +7,33 @@ import images from "../themes/images";
 import { connect } from "react-redux";
 import LogOutButton from "../components/LogOutButton";
 
+
+
 const ProfileScreen = ({ logout, user, uid, navigation }) => {
     useEffect(() => {
         if (uid == null) {
             navigation.navigate("LogIn")
         }
     }, [uid])
+
+    const ButtonDetails = [
+        {
+            imgPath: images.contact,
+            name: "Contact Info",
+        },
+        {
+            imgPath: images.funding,
+            name: "Source of Funding Info"
+        },
+        {
+            imgPath: images.bank,
+            name: "Bank Account Info"
+        },
+        {
+            imgPath: images.doc,
+            name: "Document Info"
+        },
+    ]
 
     return <View style={styles.ScreenView}>
         <View style={styles.profileView}>
@@ -30,18 +51,12 @@ const ProfileScreen = ({ logout, user, uid, navigation }) => {
             </View>
         </View>
         <View style={styles.buttonsView}>
-            <ProfileButton
-                imgPath={images.contact}
-                name={"Contact Info"} />
-            <ProfileButton
-                imgPath={images.funding}
-                name={"Source of Funding Info"} />
-            <ProfileButton
-                imgPath={images.bank}
-                name={"Bank Account Info"} />
-            <ProfileButton
-                imgPath={images.doc}
-                name={"Document Info"} />
+            {ButtonDetails.map(button => {
+                return <ProfileButton
+                    name={button.name}
+                    imgPath={button.imgPath} />
+            })}
+
             <LogOutButton
                 logOut={logout}
             ></LogOutButton>
